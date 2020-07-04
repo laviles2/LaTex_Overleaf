@@ -1,0 +1,370 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[left=1in, top=1in, bottom=1in, right=1in]{geometry}
+% Phonological rules
+\usepackage{phonrule}
+%IPA
+\usepackage{tipa}
+\let\ipa\textipa
+\usepackage{vowel}
+\newcommand{\BlankCell}{}
+%Trees
+\usepackage{qtree}
+\usepackage{textgreek}
+%OT
+ \usepackage{ot-tableau}
+ \usepackage{pifont}
+ \newcommand{\hand}{\ding{43}}
+
+
+\usepackage{hyperref}
+\title{\LaTeX \space Phonetics \& Phonology}
+\author{Luis F. Avil\'es Gonz\'alez\\The University of Texas, Austin}
+\date{July 8, 2020\\LSRL 50}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This handout is a compilation of several others that already exist in the internet. The purpose is to provide a centralized document that contains all the code needed to get you started with \LaTeX\space typesetting. Please feel free to reach out if you have any questions when typesetting your document at laviles@utexas.edu
+This document is intended for people that work in the areas of Phonetics and Phonology. 
+\section{IPA Vowel and Consonant Charts}
+In order to typeset IPA symbols in LaTeX you will need the following package in the preamble section:
+\begin{verbatim}
+\usepackage{tipa}
+\let\ipa\textipa
+\usepackage{vowel}
+\newcommand{\BlankCell}{}
+\end{verbatim}
+
+The following table illustrates the IPA symbols. the code can be found in the GitHub folder. The vowel chart is borrowed from vowel.tex in the TIPA examples.
+
+	\begin{center}
+		\begin{tabular}{|l|cc|cc|cc|cc|cc|cc|cc|cc|cc|cc|cc|}
+%\begin{tabular}{|l|cc|}
+			\hline & 
+				\multicolumn{2}{|c|}{\footnotesize{Bilabial}} &					% Bilabial
+				\multicolumn{2}{|c|}{\footnotesize{Lab. dent.}} & 			% Labiodental
+				\multicolumn{2}{|c|}{\footnotesize{Dental}} & 					% Dental
+				\multicolumn{2}{|c|}{\footnotesize{Alveolar}} & 				% Alveolar
+				\multicolumn{2}{|c|}{\footnotesize{P-alveo.}} & 		% Post-alveolar
+				\multicolumn{2}{|c|}{\footnotesize{Retroflex}} & 				% Retroflex
+				\multicolumn{2}{|c|}{\footnotesize{Palatal}} & 					% Palatal
+				\multicolumn{2}{|c|}{\footnotesize{Velar}} & 					% Velar
+				\multicolumn{2}{|c|}{\footnotesize{Uvular}} & 					% Uvular
+				\multicolumn{2}{|c|}{\footnotesize{Pharyng.}} & 			% Pharyngeal
+				\multicolumn{2}{|c|}{\footnotesize{Glottal}}  \\					% Glottal
+
+			\hline Plosive &  							% Plosive
+				p & b &													% Bilabial
+				&&														% Labiodental
+				\multicolumn{3}{|r}{t}&							% Dental
+				\multicolumn{3}{l|}{d}&							% Alveolar
+																			% Post-alveolar
+				\ipa{\:t} & \ipa{\:d}&									% Retroflex
+				c & \textbardotlessj &														% Palatal
+				k & g &													% Velar
+				q & \ipa{\;G} &										% Uvular
+				& \BlankCell        &								% Pharyngeal
+				\ipa{P}& \BlankCell         \\								% Glottal
+
+			\hline Nasal & 							% Nasal
+				& m &													% Bilabial
+				& \ipa{M} &											% Labiodental
+				\multicolumn{3}{|r}{}&								% Dental
+				\multicolumn{3}{l|}{n}&							% Alveolar
+																			% Post-alveolar
+				& \ipa{\:n} &														% Retroflex
+				& \textltailn &														% Palatal
+				& \ipa{N} &														% Velar
+				& \ipa{\;N} &														% Uvular
+				\BlankCell        & \BlankCell        &		% Pharyngeal
+				\BlankCell        & \BlankCell         \\		% Glottal
+
+			\hline Trill &  								% Trill
+				& \ipa{\;B}&											% Bilabial
+				& &														% Labiodental
+				\multicolumn{3}{|r}{}&								% Dental
+				\multicolumn{3}{l|}{r}&								% Alveolar
+																			% Post-alveolar
+				& &														% Retroflex
+				& &														% Palatal
+				\BlankCell        & \BlankCell        &		% Velar
+				& \ipa{\;R}&											% Uvular
+				& &														% Pharyngeal
+				\BlankCell        & \BlankCell         \\		% Glottal
+
+			\hline Tap/Flap &  						% Tap /Flap
+				& &													% Bilabial
+				& &														% Labiodental
+				\multicolumn{3}{|r}{} &					% Dental
+				\multicolumn{3}{l|}{\ipa{R}} &					% Alveolar
+																			% Post-alveolar
+				& \ipa{\:r} &														% Retroflex
+				& &														% Palatal
+				\BlankCell        & \BlankCell        &		% Velar
+				& &														% Uvular
+				& &														% Pharyngeal
+				\BlankCell        & \BlankCell         \\		% Glottal
+
+			\hline Fricative & 						% Fricative
+				\ipa{F} & \ipa{B} &									% Bilabial
+				f & v &													% Labiodental
+				\ipa{T} & \ipa{D} &									% Dental
+				s & z &													% Alveolar
+				\ipa{S} & \ipa{Z} &									% Post-alveolar
+				\ipa{\:s} & \ipa{\:z} &								% Retroflex
+				\ipa{\c{c}} & \ipa{J} &								% Palatal
+				x & \ipa{G} &											% Velar
+				\ipa{X} & \ipa{K} &									% Uvular
+				\textcrh & \ipa{Q} &								% Pharyngeal
+				h & \texthth \\										% Glottal
+
+			\hline Lat. Fric. & 					% Lat. Fricative
+				\BlankCell        & \BlankCell        &		% Bilabial
+				\BlankCell        & \BlankCell        &		% Labiodental
+				\multicolumn{3}{|r}{\textbeltl} &				% Dental
+				\multicolumn{3}{l|}{\textlyoghlig} &			% Alveolar
+																			% Post-alveolar
+				& &														% Retroflex
+				& &														% Palatal
+				& &														% Velar
+				& &														% Uvular
+				\BlankCell        & \BlankCell        			% Pharyngeal
+				& \BlankCell        & \BlankCell         \\   % Glottal
+
+			\hline Approx & 							% Approx.
+				& &														% Bilabial
+				& \ipa{V} &											% Labiodental
+				\multicolumn{3}{|r}{}&								% Dental
+				\multicolumn{3}{l|}{\ipa{\*r}} &					% Alveolar
+																			% Post-alveolar
+				& \ipa{\:R} &											% Retroflex
+				& j &														% Palatal
+				& \textturnmrleg &									% Velar
+				& &														% Uvular
+				& &														% Pharyngeal
+				\BlankCell        & \BlankCell         \\		% Glottal
+
+			\hline Lat. appr. & 					% Lat. Approx
+				\BlankCell        & \BlankCell        &		% Bilabial
+				\BlankCell        & \BlankCell        &		% Labiodental
+				\multicolumn{3}{|r}{}&								% Dental
+				\multicolumn{3}{l|}{l}&								% Alveolar
+																			% Post-alveolar
+				& \ipa{\:l} &											% Retroflex
+				& \ipa{L} &												% Palatal
+				& \ipa{\;L} &											% Velar
+				& &														% Uvular
+				\BlankCell        & \BlankCell        &		% Pharyngeal
+				\BlankCell        & \BlankCell         \\		% Glottal
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\begin{center}
+		\begin{vowel}
+			%    \putcvowel[l]{i}{1}
+    		\putvowel[l]{i}{0pt}{0pt}
+   			\putcvowel[r]{y}{1}
+   			\putcvowel[l]{e}{2}
+   			\putcvowel[r]{\o}{2}
+   			\putcvowel[l]{\textepsilon}{3}
+  			\putcvowel[r]{\oe}{3}
+    		\putcvowel[l]{a}{4}
+    		\putcvowel[r]{\textscoelig}{4}
+   			\putcvowel[l]{\textscripta}{5}
+    		\putcvowel[r]{\textturnscripta}{5}
+    		\putcvowel[l]{\textturnv}{6}
+    		\putcvowel[r]{\textopeno}{6}
+    		\putcvowel[l]{\textramshorns}{7}
+    		\putcvowel[r]{o}{7}
+    		\putcvowel[l]{\textturnm}{8}
+    		\putcvowel[r]{u}{8}
+    		\putcvowel[l]{\textbari}{9}
+    		\putcvowel[r]{\textbaru}{9}
+    		\putcvowel[l]{\textreve}{10}
+    		\putcvowel[r]{\textbaro}{10}
+    		\putcvowel{\textschwa}{11}
+    		\putcvowel[l]{\textrevepsilon}{12}
+    		\putcvowel[r]{\textcloserevepsilon}{12}
+    		\putcvowel{\textsci\ \textscy}{13}
+    		\putcvowel{\textupsilon}{14}
+    		\putcvowel{\textturna}{15}
+    		\putcvowel{\ae}{16}
+		\end{vowel}
+	\end{center} 
+
+\\
+When typing symbols in the prose you can retrieve the symbol by using the \verb|\textipa{}| command. For instance to type \textbf{\textipa{N}} you use \verb|\textipa{N}|. The listing of each IPA symbol can be found in the source code in the GitHub Folder. 
+\\
+However, not all symbols follow the \verb|\textipa| command. The following table contains other commands that may be useful for linguists:\\
+\begin{center}
+    \begin{tabular}{|l|c|l|}
+    \hline
+     source code & symbol & description  \\
+     \hline \hline
+     \verb|\textipa{C}| & \textipa{C} & Alveo palatal fricativa sorda\\
+     \hline
+     \verb|\textctz | & \textctz  & Alveo palatal fricativa sonora\\
+     \hline
+     \verb|\texththeng|& \texththeng & velar/uvular sound\\
+     \hline
+     \verb|\textdyoghlig| & \textdyoghlig & voiced postalveolar fricative\\
+     \hline
+     \verb|\textteshlig| & \textteshlig & Voiceless postalveolar fricative\\
+     \hline
+     \verb|\textrhookschwa| & \textrhookschwa  & Rhotacized schwa\\
+     \hline
+     \verb|\textipa{"}CV|& \textipa{"}CV& Primary stress\\
+     \hline
+     \verb|\textipa{""}CV.\textipa{"}V|& \textipa{""}CV.\textipa{"}V & Secondary stress \\
+     \hline
+     \verb|\t{cc}| & \t{cc} & Tiebar\\
+     \hline
+     \verb|p\super h| & p\super h & Aspirated\\
+     \hline
+     \verb|\textsubbridge t|& \textsubbridge t & dental diacritic\\
+     \hline
+     \verb|\textinvsubbridge d|& \textinvsubbridge d & apical diacritic\\
+     \hline
+     \verb|\textsubumlaut{a}|& \textsubumlaut{a}& breathy voice\\
+     \hline
+     \verb|\textsubtilde{e}|& \textsubtilde{e}& creaky voice\\
+     \hline
+     \verb|\textsubring{v}|& \textsubring{v} & voiceless\\
+     \hline
+\end{tabular}
+\end{center}
+\\
+For additional symbols you may visit  \href{http://languagelog.ldc.upenn.edu/myl/ldc/tipaman.pdf}{here} for a detailed description of other IPA symbols.\\
+
+\section{Phonology}
+\subsection{formulating rules}
+In order to be able to do typeset phonological rules in LaTeX you will need the following package in the Preamble section:
+\begin{verbatim}
+    \usepackage{phonrule}
+\end{verbatim}
+
+In order to typoset phonological rules, you use the command \verb|\phon|. The command has two segments: the first one is the input of the rule and the second is its output.
+\begin{center}
+    \verb|\phon{n}{\textipa{N}}|\\
+    
+    \phon{n}{\textipa{N}}
+\end{center}
+The command \verb|\phonc| adds a third argument for context:
+\begin{center}
+    \verb|\phonc{a}{o}{[+back]}|\\
+    
+    \phonc{a}{o}{[+back]}
+\end{center}
+\\
+The commands \verb|\phonl|,\verb|\phonr| and \verb|\phonb| add a place holder line and puts the context, respectively, on the left (l), on the right (r) and on both sides (b). \\
+\begin{enumerate}
+    \item \verb|\phonl{k}{t}{i}| 
+    \item \space\space\phonl{k}{t}{i}
+    \item \verb|\phonr{t}{ts}{u}| 
+    \item \space\space\phonr{t}{ts}{u}
+    \item \verb|\phonb{s}{z}{v}{v}|
+    \item \space\space\phonb{s}{z}{v}{v}
+\end{enumerate}
+    
+The \verb|\oneof| command provides the possibility to compile several contsxts, one per line, embraced by a left curly bracket.\\
+\begin{center}
+    \verb|\phonc{t}{ts}{\oneof{\phold i\\ \phold u}}|\\
+    
+    \phonc{t}{ts}{\oneof{\phold i \\ \phold u}}
+\end{center}
+
+The \verb|\phonfeat| commands allows you to inset feature specifications. The possible values are `c' for center (default, `l' for left aligned, and `r' foe right aligned.\\
+
+  \begin{center}
+\verb|\phonc{t}{ts}{\phold \phonfeat[l]{− consonantal\\ +high\\ +front}}|\\
+
+\phonc{t}{ts}{\phold
+\phonfeat[l]{−
+consonantal \\
++high \\
++front}
+}
+\end{center}\\
+
+For additional information on the \texttt{phonrule} package visit \href{https://ctan.math.illinois.edu/macros/latex/contrib/phonrule/phonrule-doc.pdf}{here}.
+\\
+
+In case you wish to list a syllable tree: you can do that as using the \verb|\usepackage{qtree}|:\\
+
+\qtreecentertrue \Tree [.\textgreek{\textsigma} [.Onset C ] [.Rhyme [.Nucleus V ] [.Coda C ] ]]\\
+\verb|\qtreecentertrue \Tree [.\textgreek{\textsigma} [.Onset C ] [.Rhyme [.Nucleus V ] [.Coda C ] ]]|
+
+\subsection{Optimality Theory (OT) Tableaux}
+\subsubsection{general notes}
+In order to typseset for OT you will use the \texttt{ot-tableau} package. This package  provides a manageable way to create OT tableaux. the \LaTeX \space source is very similar to that of a tableau. The style can be varied to suit one's personal taste. \\
+
+\begin{center}
+    \begin{tableau}{c:c|c}
+\inp{\ips{stap}} \const{*Complex} \const{Anchor-IO} \const{Contiguity-IO}
+\cand{stap} \vio{*!} \vio{} \vio{}
+\cand[\Optimal]{sap} \vio{} \vio{} \vio{*}
+\cand{tap} \vio{} \vio{*!} \vio{}
+\end{tableau}
+\end{center}
+
+
+\\
+
+Things to keep in mind: 
+\begin{itemize}
+    \item The package introduces the \texttt{tableau} environment.
+    \item Indicate solid or dashed lines between constraints with \verb|\begin{tableau}{c:cc}|. A solid line is indicated by a pipe, a dashed line with a colon.
+    \item The input us specified with the command \verb|\inp|. (Here the \verb|\ips| macro is being used to render the text using TIPA and put it within slashes.)
+    \item Indicate the constraint with the \verb|\const| command.
+    \item Add a candidate with the \verb|\cand| command. You can also annotate the candidate using \HandLeft, \verb|\cand[HandLeft]|.
+    \item Violations are indicated with the \verb|\vio| macro. You need to include these commands even when there are no violations. 
+    \item Keeping the columns aligned in the source cose makes the tableau much easier to edit.
+    \item The commands \verb| \cand*| and \verb|\const*|apply no formatting in the tableau. 
+\end{itemize}
+\subsubsection{Shading and other logistical items}
+
+There are two shading systems used for OT tableaux. The first one will shade the cells in a row after the crutial violation (!). The second consists on shading the entire column, if the associate constraint does not generate crucial variations. 
+The following tableu: \\
+\begin{center}
+\ShadingOn
+\begin{tableau}{c|c}
+\inp{\ips{ba}} \const{*VcdObs} \const*{\textsc{Ident-IO}-[nas]}
+\cand{ba} \vio{*!} \vio{}
+\cand[\HandRight]{pa} \vio{} \vio{*}
+\end{tableau}
+\end{center}
+
+The following table shows the shading for the entire column by using `s' instead of `c' in the argument to the \texttt{tableau}. 
+
+\begin{center}
+    \begin{tableau}{c|s}
+\inp{\ips{ba}} \const{*VcdObs} \const*{\textsc{Ident-IO}-[nas]}
+\cand{ba} \vio{*!} \vio{}
+\cand[\HandRight]{pa} \vio{} \vio{*}
+\end{tableau}
+\end{center}
+\\
+\HandRight More specifically, ot-tableau will look for the exclamation point to program the shading. You have to provide the exclamation point.\\
+\HandRight At the moment shading is not working. However, according to the online forum, this issue is being addressed. \\
+
+
+\section{References}
+
+\href{https://www1.essex.ac.uk/linguistics/external/clmt/latex4ling/}{Arnold, D. (2010) LaTeX for Linguists} 
+\\
+\\
+\href{https://ctan.math.illinois.edu/macros/latex/contrib/ot-tableau/ot-tableau.pdf}{Baker, Adam (2017) The \texttt{ot-tableau} package}
+\\
+\\
+\href{https://jon.dehdari.org/tutorials/tipachart_mod.pdf}{IPA \LaTeX\space codes with \texttt{textipa}}
+\\
+\\
+\href{http://languagelog.ldc.upenn.edu/myl/ldc/tipaman.pdf}{Fukui, R. (1996) TIPA: a System for Processing Phonetic Symbols in \LaTeX}
+\\
+\\
+\href{https://ctan.math.illinois.edu/macros/latex/contrib/phonrule/phonrule-doc.pdf}{Coretta, S. (2017) The \texttt{phonrule} package (v1.3.2)}
+\end{document}
