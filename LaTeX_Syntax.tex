@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[left=1in, top=1in, bottom=1in, right=1in]{geometry}
+% Phonological rules
+\usepackage{phonrule}
+
+%Trees
+\usepackage[noeepic]{qtree}
+\usepackage{textgreek}
+\usepackage{tree-dvips}
+%OT
+ \usepackage{ot-tableau}
+ \usepackage{pifont}
+ \newcommand{\hand}{\ding{43}}
+
+
+\usepackage{hyperref}
+\title{\LaTeX \space Syntax}
+\author{Luis F. Avil\'es Gonz\'alez\\The University of Texas, Austin}
+\date{July 8, 2020\\LSRL 50}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This handout is a compilation of several others that already exist in the internet. The purpose is to provide a centralized document that contains all the code needed to get you started with \LaTeX\space typesetting. Please feel free to reach out if you have any questions when typesetting your document at laviles@utexas.edu
+This document is intended for people that work in Morphology and Syntax. 
+\section{Trees}
+In order to typeset a tree in LaTeX you will need the following commands in the preamble section:
+\begin{verbatim}
+\usepackage[noeepic]{qtree} %tree drawing package
+\usepackage{tree-dvips}.    %draws arrows on trees
+\end{verbatim}
+
+This section will provide several examples and codes in how to formulate trees. The language examples are from Southern Bolivian Quechua (SBQ)
+\\
+
+An X-Bar tree will look like this \\
+\begin{center}
+    \verb|\Tree [.XP - [.X\1 [.X - ] \qroof{-}.XP ]]|\\
+\end{center}
+\\
+X-Bar:
+\Tree [.XP {\sc Spec} [.X\1 [.X - ] \qroof{COMP}.XP ]]
+\\
+Example 1:
+\Tree [.DP - [.D\1 [.D uh ] \qroof{u\textltailn a \ipa{L}ama}.NP ]]
+\\
+Example 2:
+\Tree [.DP - [.D\1 [.D uh ] [.NP \qroof{xatun}.AdjP [.N\1 [.N \ipa{L}ama ] ]] ]]
+\\
+Surface structure:\\
+\hand check source code for language\\
+
+\small \Tree [.CP - [.C' [.C ] [.IP [\qroof{xatun \ipa{L}ama}.DP ] [.I' [.I \ipa{N} ] [.vP DP [.v’ \qroof{\textinvscr a\textfishhookr a}.v [.VP \qroof{u\textltailn a \ipa{L}ama}.DP [.V’ [.V \textltailn a ] \qroof{-ma\ipa{N}}.DP ]]]]]]]]
+\\
+\newpage
+
+Deep Structure:\\
+\hand check source code for language\\
+
+\small \Tree [.CP \qroof{xatun \ipa{L}ama}.C'_j  [.IP [\qroof{u\textltailn a \ipa{L}ama-ma\ipa{N}}.DP_j_k ] [.I' [.I \textinvscr a\textfishhookr a\ipa{N}\textltailn a ] [.vP DP_k [.v’ .v_l [.VP .DP_k
+[.V’ [.V_l  ] \qroof{}.DP ]]]]]]]
+\\
+Arrows:
+\begin{center}
+ \verb|\Tree [.S [.NP \node{subj}{subj_i} ] [.VP [.V verb ] [.NP \node{t}{t_i} ]]]|   
+\end{center}
+
+\\
+\Tree [.S [.NP \node{subj}{subj_i} ]
+[.VP [.V verb ] [.NP \node{t}{t_i} ]]]
+\\
+\\
+\hand According to the source, arrows can not be produce by the pdf\LaTeX\space parser. Therefore is recommended to compile the document as a DVI and then convert to a PDF.
+
+\section{References}
+
+\href{https://www1.essex.ac.uk/linguistics/external/clmt/latex4ling/}{Arnold, D. (2010) LaTeX for Linguists} 
+\\
+\\
+\href{https://www.ling.upenn.edu/advice/latex/qtree/qarrows.pdf}{Dimitriadis, A. (2008) qrrows.pdf}
+\\
+\\
+\href{https://www.ling.upenn.edu/advice/latex/qtree/qtreenotes221.pdf}{Siskind, J.K. (n.d.) \textit{Docummentation for \texttt{qtree}, a \LaTeX\space tree package}}
+
+
+\end{document}
