@@ -1,0 +1,426 @@
+\documentclass{beamer}
+
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+
+\mode<presentation>
+{
+  \usetheme{Malmoe}       % or try default, Darmstadt, Warsaw, ...
+  \definecolor{BurntOrange}{RGB}{204,85,0}
+  \usecolortheme[named=BurntOrange]{structure} % or try albatross, beaver, crane, ...
+  \usefonttheme{serif}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{chemfig}
+\usepackage[version=3]{mhchem}
+\usepackage{wrapfig}
+\usepackage{tipa}
+\usepackage{marvosym}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{menukeys}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{minted}
+\usebackgroundtemplate{\tikz\node[opacity=0.025, rotate = 0] at (page.center) {\includegraphics[height= 3in ,width=3in]{UTlogo.png}};}
+%{\includegraphics[height=1in,width=1in]{TAM-Logo.png}};}
+%\usepackage[dvipsnames]{xcolor}
+% On Overleaf, these lines give you sharper preview images.
+% You might want to `comment them out before you export, though.
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[%
+  physical paper width=8in, physical paper height=6in]
+
+% only inline todonotes work
+\usepackage{xkeyval}
+\usepackage[textsize=small]{todonotes}
+\presetkeys{todonotes}{inline}{}
+
+\usetikzlibrary{shapes,arrows,positioning,shadows}
+
+% no nav buttons
+\usenavigationsymbolstemplate{}
+
+\newcommand{\bftt}[1]{\textbf{\texttt{#1}}}
+\newcommand{\comment}[1]{{\color[HTML]{008080}\textit{\textbf{\texttt{#1}}}}}
+\newcommand{\cmd}[1]{{\color[HTML]{008000}\bftt{#1}}}
+\newcommand{\bs}{\char`\\}
+\newcommand{\cmdbs}[1]{\cmd{\bs#1}}
+\newcommand{\lcb}{\char '173}
+\newcommand{\rcb}{\char '175}
+\newcommand{\cmdbegin}[1]{\cmdbs{begin\lcb}\bftt{#1}\cmd{\rcb}}
+\newcommand{\cmdend}[1]{\cmdbs{end\lcb}\bftt{#1}\cmd{\rcb}}
+
+\newcommand{\wllogo}{\textbf{Overleaf}}
+
+% this is where the example source files are loaded from
+% do not include a trailing slash
+\newcommand{\fileuri}{https://raw.github.com/jdleesmiller/latex-course/master/en}
+
+\newcommand{\wlserver}{https://www.overleaf.com}
+\newcommand{\wlnewdoc}[1]{\wlserver/docs?snip\_uri=\fileuri/#1\&splash=none}
+
+\def\tikzname{Ti\emph{k}Z}
+
+% from http://tex.stackexchange.com/questions/5226/keyboard-font-for-latex
+\newcommand*\keystroke[1]{%
+  \tikz[baseline=(key.base)]
+    \node[%
+      draw,
+      fill=white,
+      drop shadow={shadow xshift=0.25ex,shadow yshift=-0.25ex,fill=black,opacity=0.75},
+      rectangle,
+      rounded corners=2pt,
+      inner sep=1pt,
+      line width=0.5pt,
+      font=\scriptsize\sffamily
+    ](key) {#1\strut}
+  ;
+}
+\newcommand{\keystrokebftt}[1]{\keystroke{\bftt{#1}}}
+
+% stolen from minted.dtx
+\newenvironment{exampletwoup}
+  {\VerbatimEnvironment
+   \begin{VerbatimOut}{example.out}}
+  {\end{VerbatimOut}
+   \setlength{\parindent}{0pt}
+   \fbox{\begin{tabular}{l|l}
+   \begin{minipage}{0.55\linewidth}
+     \inputminted[fontsize=\small,resetmargins]{latex}{example.out}
+   \end{minipage} &
+   \begin{minipage}{0.35\linewidth}
+     \input{example.out}
+   \end{minipage}
+   \end{tabular}}}
+
+\newenvironment{exampletwouptiny}
+  {\VerbatimEnvironment
+   \begin{VerbatimOut}{example.out}}
+  {\end{VerbatimOut}
+   \setlength{\parindent}{0pt}
+   \fbox{\begin{tabular}{l|l}
+   \begin{minipage}{0.55\linewidth}
+     \inputminted[fontsize=\scriptsize,resetmargins]{latex}{example.out}
+   \end{minipage} &
+   \begin{minipage}{0.35\linewidth}
+     \setlength{\parskip}{6pt plus 1pt minus 1pt}%
+     \raggedright\scriptsize\input{example.out}
+   \end{minipage}
+   \end{tabular}}}
+
+\newenvironment{exampletwouptinynoframe}
+  {\VerbatimEnvironment
+   \begin{VerbatimOut}{example.out}}
+  {\end{VerbatimOut}
+   \setlength{\parindent}{0pt}
+   \begin{tabular}{l|l}
+   \begin{minipage}{0.55\linewidth}
+     \inputminted[fontsize=\scriptsize,resetmargins]{latex}{example.out}
+   \end{minipage} &
+   \begin{minipage}{0.35\linewidth}
+     \setlength{\parskip}{6pt plus 1pt minus 1pt}%
+     \raggedright\scriptsize\input{example.out}
+   \end{minipage}
+   \end{tabular}}
+
+
+
+
+% Here's where the presentation starts, with the info for the title slide
+\title[LSRL@50:UT AUSTIN]{\LaTeX\space with Overleaf}
+\subtitle{A tutorial on typesetting for publication with LangSci Press}
+\author{Luis F. Avil\'es Gonz\'alez}
+\date{July 8th, 2020}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% These three lines create an automatically generated table of contents.
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Getting Started}
+\subsection{Acknowledgements}
+\begin{frame}{Acknowledgements}
+   \begin{itemize}
+       \item Land: \textit{`I wish to acknowledge and honor the indigenous communities native to these lands and recognize that the University of Texas was built on indigenous homelands and resources. I recognize the Apache, the Alabama-Coushatta Tribe of Texas, the Kickapoo Tribe of Texas, the Ysleta del sur Pueblo, the Lipan Apache Tribe, the Texas Band of Yaqui Indians, and the Coahuitlecan as past, present and future caretakers of this land'}
+       \item The organizers of the LSRL@50 for the invitation to facilitate this workshop.
+       \item The following slides are an abridged version adapted from Dr. Lees-Miller `An Interactive Introduction to \LaTeX'
+   \end{itemize} 
+\end{frame}
+\subsection{Setting up Overleaf}
+\begin{frame}{Setting up an Overleaf account}
+\begin{itemize}
+    \item Visit the \href{https://www.overleaf.com/}{Overleaf site}
+    \item Make sure to fill out email and password, then click register.
+    \item Check your email and click ‘confirm email’ this step is important to get your account activated and ready to LaTeX
+    \item \LaTeX \space away :) 
+\end{itemize}
+\end{frame}
+
+\subsection{Accessing LangSci Press overleaf template}
+\begin{frame}{Accessing LangSci Press overleaf template}
+  \begin{itemize}
+    \item Visit the \href{https://langsci-press.org/}{Language Science Press} site
+    \item On the right side select the fourth option: `Templates and tools'
+    \item Select `Overleaf template for papers in edited volumes'
+    \item On overleaf page will open, select the green button `open as a template'
+    \item In case you are not logged in, it will asked you to do so. 
+    \item You will land on the Overleaf work space. 
+\end{itemize}  
+\end{frame}
+
+
+\section{Basic Commands in \LaTeX}
+\subsection{\LaTeX\space 101}
+\begin{frame}{\LaTeX\space 101}
+\begin{itemize}
+    \item What is \LaTeX?
+    \begin{itemize}
+        \item Its a typesetting language developed by Scientist for Scientist
+    \end{itemize}
+    \item What can you do with \LaTeX?
+    \begin{itemize}
+        \item it creates beautiful documents, charts, tables, symbols and even \textit{syntax} trees.
+    \end{itemize}
+    \item What can you do in \LaTeX? 
+    \begin{itemize}
+        \item papers, presentations, spreadsheets, etc.
+    \end{itemize}
+    \item How does it work?
+    \begin{itemize}
+        \item You write your document in \texttt{plain text} with commands that describe the structure and meaning.
+        \item the \LaTeX\space program processes your text and commands to produce a formatted document.
+    \end{itemize}
+\end{itemize}  
+\end{frame}
+
+\begin{frame}[fragile]{Getting Started}
+\begin{itemize}
+    \item Commands start with a \textit{backslash} \keystrokebftt{\bs}.
+    \item Every document starts with a \verb|\documentclass| command
+    \item The argument in curly brackets \keystrokebftt{\{} \keystrokebftt{\}} tells \LaTeX\space what kind of document we are creating
+    \item A percent sign \keystrokebftt{\%}  starts a comment -\LaTeX\space will ignore the rest of the line.
+\end{itemize}
+\end{frame}
+\subsection{Caveats \& Errors}
+\begin{frame}[fragile]{Caveats}
+    \begin{itemize}
+        \item Quotation marks are a bit tricky:\\
+use a backtick \keystroke{\`{}} on the left and an apostrophe \keystroke{\'{}} on the right.
+\begin{exampletwouptiny}
+Single quotes: `text'.
+
+Double quotes: ``text''.
+\end{exampletwouptiny}
+\item Some common characters have special meanings in \LaTeX:\\[1ex]
+\begin{tabular}{cl}
+\keystrokebftt{\%} & percent sign              \\
+\keystrokebftt{\#} & hash (pound / sharp) sign \\
+\keystrokebftt{\&} & ampersand                 \\
+\keystrokebftt{\$} & dollar sign               \\
+\end{tabular}
+\item If you just type these, you'll get an error. If you want one to appear in
+the output, you have to \emph{escape} it by preceding it with a backslash.
+\begin{exampletwoup}
+\$\%\&\#!
+\end{exampletwoup}
+    \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Errors}
+    \begin{itemize}
+\item \LaTeX{} can get confused when it is trying to compile your document. If
+it does, it stops with an error, which you must fix before it will produce
+any output.
+\end{itemize}
+\begin{block}{Advice on Errors}
+\begin{enumerate}
+\item Don't panic! Errors happen.
+\item Fix them as soon as they arise --- if what you just typed caused an error,
+you can start your debugging there.
+\item If there are multiple errors, start with the first one --- the cause may
+even be above it.
+\end{enumerate}
+\end{block}
+\end{frame}
+\subsection{Structuring Document}
+\begin{frame}[fragile]{Structured Document}
+\begin{itemize}{\small
+\item Tell \LaTeX{} the \verb|\title| and \verb|\author| names in the preamble.
+\item Then use \verb|\maketitle| in the document to actually create the title.
+\item Use the \bftt{abstract} environment to make an abstract.
+}\end{itemize}
+\begin{minipage}{0.75\linewidth}
+\inputminted[fontsize=\scriptsize,frame=single,resetmargins]{latex}%
+  {structure-title.tex}
+\end{minipage}
+\end{frame}
+\begin{frame}{Your turn #1}
+    Lets structure our document in the LangSci Press template
+    Note the following:
+    \begin{itemize}
+        \item The abstract has to be pasted in the `preamble' section. 
+        \item Make sure to list any packages int the `preamble' section. Refer to the handouts for the ones specific to your field.
+        \item if you get stuck you can ask me or Kelsey for support in the chat.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Frame Title}
+   \begin{itemize}{\small
+\item Just use \verb|\section| and \verb|\subsection|.
+\item Can you guess what \verb|\section*| and \verb|\subsection*| do?
+}\end{itemize}
+\begin{minipage}{0.55\linewidth}
+\inputminted[fontsize=\scriptsize,frame=single,resetmargins]{latex}%
+  {structure-sections.tex}
+\end{minipage} 
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Structured Document}
+\begin{itemize}{\small
+\item Use \verb|\label| and \verb|\ref| for automatic numbering.
+\item The \bftt{amsmath} package provides \verb|\leqref| for referencing equations.
+}\end{itemize}
+\begin{minipage}{0.75\linewidth}
+\inputminted[fontsize=\scriptsize,frame=single,resetmargins]{latex}%
+  {structure-crossref.tex}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Your turn #2}
+    Lets structure our document in the LangSci Press template
+    complete the following:
+    \begin{itemize}
+        \item list all your sections and subsections.
+        \item create references for your sections and subsections.
+        \item if you get stuck you can ask me or Kelsey for support in the chat.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{\insertsubsection}
+\begin{itemize}
+\item Requires the \bftt{graphicx} package, which provides the
+\verb|\includegraphics| command.
+\item Supported graphics formats include JPEG, PNG and PDF (usually).
+\end{itemize}
+\begin{exampletwouptiny}
+\includegraphics[
+  width=0.5\textwidth]{gerbil}
+
+\includegraphics[
+  width=0.3\textwidth,
+  angle=270]{gerbil}
+\end{exampletwouptiny}
+
+\tiny{Image license: \href{https://pixabay.com/en/animal-apple-attractive-beautiful-1239390/}{CC0}}
+\end{frame}
+\subsection{Tables}
+\begin{frame}[fragile]{Tables}
+\begin{itemize}
+\item Tables in \LaTeX{} take some getting used to.
+\item Use the \bftt{tabular} environment from the \bftt{tabularx} package.
+\item The argument specifies column alignment --- \textbf{l}eft, \textbf{r}ight, \textbf{r}ight.
+\begin{exampletwouptiny}
+\begin{tabular}{lrr}
+Item   & Qty & Unit \$ \\
+Widget & 1   & 199.99  \\
+Gadget & 2   & 399.99  \\
+Cable  & 3   & 19.99   \\
+\end{tabular}
+\end{exampletwouptiny}
+
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Tables}
+    \begin{itemize}
+    \item It also specifies vertical lines; use \cmdbs{hline} for horizontal lines.
+\begin{exampletwouptiny}
+\begin{tabular}{|l|r|r|} \hline
+Item   & Qty & Unit \$ \\\hline
+Widget & 1   & 199.99  \\
+Gadget & 2   & 399.99  \\
+Cable  & 3   & 19.99   \\\hline
+\end{tabular}
+\end{exampletwouptiny}
+\item Use an ampersand \keystrokebftt{\&} to separate columns and a double backslash \keystrokebftt{\bs}\keystrokebftt{\bs} to start a new row (like in the \bftt{align*} environment that we saw in part 1).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Your turn #3}
+    Lets add more to our document in the LangSci Press template
+    complete the following:
+    \begin{itemize}
+        \item Upload an image on to the environment section to the left of the source.
+        \item embed image int your document.
+        \item create one table.
+        \item if you get stuck you can ask me or Kelsey for support in the chat.
+    \end{itemize}
+\end{frame}
+
+
+\subsection{bib\TeX}
+\begin{frame}[fragile]{\insertsubsection{} 1}
+\begin{itemize}
+\item Put your references in a \bftt{.bib} file in `bibtex' database format.
+\item Most reference managers can export to bibtex format. Overleaf supports the following systems:
+\begin{itemize}
+    \item Zotero
+    \item Mendeley
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{\insertsubsection{} 2}
+\begin{itemize}
+\item Each entry in the \bftt{.bib} file has a \emph{key} that you can use to
+reference it in the document. For example, \bftt{} is the key for this article:
+\begin{minted}[fontsize=\small,frame=single]{latex}
+@Article{,
+  author = {},
+  ...
+}
+\end{minted}
+\item It's a good idea to use a key based on the name, year and title.
+\item \LaTeX{} can automatically format your in-text citations and generate a
+list of references; it knows most standard styles, and you can design your own.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\insertsubsection{} 3}
+\begin{itemize}
+\item Use the \bftt{natbib} package\footnote{There is a new package with more
+  features named \bftt{biblatex} but most of the articles templates still use
+  \bftt{natbib}.} with \verb|\citet| and \verb|\citep|.
+\item Reference \verb|\bibliography| at the end, and specify a \verb|\bibliographystyle|.
+\end{itemize}
+\begin{minipage}{0.75\linewidth}
+\inputminted[fontsize=\scriptsize,frame=single,resetmargins]{latex}%
+  {bib-example.tex}
+\end{minipage}
+\end{frame}
+\begin{frame}{Your turn #4}
+    Lets add more to our document in the LangSci Press template
+    complete the following:
+    \begin{itemize}
+        \item Upload your .bib file on to the enviroement section to the left of the source.
+        \item Create two citations of your own.
+        \item if you get stuck you can ask me or Kelsey for support in the chat.
+    \end{itemize}
+\end{frame}
+\end{document}
