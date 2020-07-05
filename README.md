@@ -3,7 +3,7 @@ This repositiory contains all the materials used for LSRL@50 Presentation on Jul
 If you have any questions or requests please contact me at laviles@utexas.edu
 
 In this repository you will find
-- Workshop presentation and its source code
-- Phonetics & Phonology Handout
-- Syntax Tree handout
+- Workshop presentation and its sourcecode
+- Phonetics & Phonology Handout and sourcecode
+- Syntax Tree handout sourcecode
 
